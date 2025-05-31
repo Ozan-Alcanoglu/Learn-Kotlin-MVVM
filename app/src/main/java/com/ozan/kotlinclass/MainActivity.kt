@@ -11,6 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+
+import androidx.navigation.compose.rememberNavController
+import com.ozan.kotlinclass.screens.FirstPage
+import com.ozan.kotlinclass.screens.SecondPage
 import com.ozan.kotlinclass.ui.theme.KotlinClassTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +25,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KotlinClassTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AppNavigation()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun AppNavigation() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KotlinClassTheme {
-        Greeting("Android")
+    NavHost(navController, startDestination = "first") {
+        composable("first") {
+            FirstPage(onContinueClicked = {
+                navController.navigate("second")
+            })
+        }
+        composable("second") {
+            SecondPage(onBackClicked = {
+                navController.popBackStack()
+            })
+        }
     }
 }

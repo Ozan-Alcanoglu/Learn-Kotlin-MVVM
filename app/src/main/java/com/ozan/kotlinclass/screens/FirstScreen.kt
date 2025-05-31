@@ -18,6 +18,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
@@ -34,22 +35,13 @@ import com.ozan.kotlinclass.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FirstPage() {
+fun FirstPage(onContinueClicked:()->Unit) {
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Ana Sayfa") },
-                navigationIcon = {
-                    IconButton(onClick = { /* geri butonu tıklama */ }) {
 
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /* sağ aksiyon */ }) {
-
-                    }
-                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White,
@@ -75,15 +67,13 @@ fun FirstPage() {
                 onValueChange = { newText -> isim = newText },
                 label = { Text("Adınızı girin") },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp).border( width = 2.dp,
-                    color = Color.Blue,
-                    shape = RoundedCornerShape(
-                        topEnd = 8.dp,
-//                        topStart = 8.dp,
-//                        bottomEnd =8.dp ,
-//                        bottomStart = 8.dp
-
-                    ) // içine sadece örnek olarak 12.dp yazarsan her tarafı 12.dp yuvarlar ama bu şekilde kenarları istediğin gibi yuvarlarsın
+                shape = RoundedCornerShape(
+                    topEnd = 8.dp,
+                ),
+                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.Blue,
+                    unfocusedBorderColor = Color.Gray
                 )
 
             )
@@ -93,11 +83,13 @@ fun FirstPage() {
                 onValueChange = { newText -> soyisim = newText },
                 label = { Text("Soyadınızı girin") },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp).border( width = 2.dp,
-                    color = Color.Blue,
-                    shape = RoundedCornerShape(
-                        topEnd = 8.dp,
-                    )
+                shape = RoundedCornerShape(
+                    topEnd = 8.dp,
+                ),
+                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.Blue,
+                    unfocusedBorderColor = Color.Gray
                 )
 
             )
@@ -107,26 +99,28 @@ fun FirstPage() {
                 onValueChange = { newText -> şifre = newText },
                 label = { Text("Şifrenizi girin") },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp).border( width = 2.dp,
-                    color = Color.Blue,
-                    shape = RoundedCornerShape(
-                        topEnd = 8.dp,
-                    )
+                shape = RoundedCornerShape(
+                    topEnd = 8.dp,
+                ),
+                modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp, horizontal = 16.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.Blue,
+                    unfocusedBorderColor = Color.Gray
                 )
 
             )
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(modifier = Modifier.fillMaxWidth().padding(16.dp), onClick = {}) {
+            Button(modifier = Modifier.fillMaxWidth().padding(16.dp), onClick = {onContinueClicked()}) {
                 Text("Devam et")
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun Test() {
-    FirstPage()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun Test() {
+//    FirstPage()
+//}

@@ -1,4 +1,4 @@
-package com.ozan.kotlinaiwork.repository
+/*package com.ozan.kotlinclass.repo
 
 import android.content.Context
 import androidx.room.Database
@@ -38,3 +38,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+*/
