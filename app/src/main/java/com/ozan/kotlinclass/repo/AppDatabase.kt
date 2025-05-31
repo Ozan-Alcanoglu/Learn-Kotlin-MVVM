@@ -1,4 +1,4 @@
-/*package com.ozan.kotlinclass.repo
+package com.ozan.kotlinclass.repo
 
 import android.content.Context
 import androidx.room.Database
@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 
 import com.ozan.kotlinclass.model.Job
 import com.ozan.kotlinclass.model.User
+import dagger.Provides
 
 
 @Database(
@@ -15,9 +16,11 @@ import com.ozan.kotlinclass.model.User
     version = 2,
     exportSchema = false
 )
-@TypeConverters(TypeConverters::class)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
+    abstract fun jobDao(): JobDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
@@ -36,6 +39,8 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+
+
     }
 }
-*/
+

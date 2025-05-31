@@ -11,9 +11,10 @@ class JobImpl@Inject constructor(
 
     suspend fun addJob(jobDto: JobDto){
 
+        val joblvl = jobDto.joblvl ?: throw IllegalArgumentException("Job level cannot be null")
         val job = Job(
             jobfield = jobDto.jobfield,
-            joblvl = jobDto.joblvl
+            joblvl = joblvl
         )
         jobDao.addJob(job)
     }

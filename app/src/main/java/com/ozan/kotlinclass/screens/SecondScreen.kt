@@ -34,11 +34,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.ozan.kotlinclass.model.Joblvl
+import com.ozan.kotlinclass.serviec.dto.JobDto
+import com.ozan.kotlinclass.serviec.dto.UserDto
+import com.ozan.kotlinclass.viewmodel.SharedDosyaViewModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SecondPage(onBackClicked: () -> Unit){
+fun SecondPage(
+    onBackClicked: () -> Unit,
+    sharedViewModel: SharedDosyaViewModel = hiltViewModel()
+    ){
 
     Scaffold(
         topBar = {
@@ -127,7 +135,35 @@ fun SecondPage(onBackClicked: () -> Unit){
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(onClick = {},
+
+
+            Button(onClick = {
+
+                coroutineScope.launch {
+
+                    val userdto=UserDto(
+                        username = sharedViewModel.firstName,
+                        surname = sharedViewModel.lastName,
+                        password = sharedViewModel.password
+                    )
+
+                    if (selectedJobLevel == null) {
+
+                        return@launch
+                    }
+
+                    val jobdto=JobDto(
+                        jobfield = alan,
+                        joblvl = selectedJobLevel
+                    )
+
+                    sharedViewModel.addUser(userdto)
+
+                    sharedViewModel.addJob(jobdto)
+                }
+
+
+            },
                 modifier = Modifier.fillMaxWidth().padding(start = 16.dp, top = 16.dp, end = 16.dp,bottom=16.dp),
                 shape = RoundedCornerShape(
                         topEnd = 24.dp,

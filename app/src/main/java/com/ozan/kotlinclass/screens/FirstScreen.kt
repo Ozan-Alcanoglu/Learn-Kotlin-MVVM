@@ -31,11 +31,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ozan.kotlinclass.R
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.ozan.kotlinclass.viewmodel.SharedDosyaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FirstPage(onContinueClicked:()->Unit) {
+fun FirstPage(
+    onContinueClicked:()->Unit,
+    sharedViewModel:SharedDosyaViewModel= hiltViewModel()
+   ) {
 
     Scaffold(
         topBar = {
@@ -112,7 +116,13 @@ fun FirstPage(onContinueClicked:()->Unit) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(modifier = Modifier.fillMaxWidth().padding(16.dp), onClick = {onContinueClicked()}) {
+            Button(modifier = Modifier.fillMaxWidth().padding(16.dp),
+                onClick = {
+                    sharedViewModel.saveUserData(isim, soyisim, şifre)
+                    onContinueClicked()
+                })
+
+            {
                 Text("Devam et")
             }
         }

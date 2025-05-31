@@ -14,6 +14,7 @@ class UserImpl@Inject constructor(
 
         val user=User(
             username=userDto.username,
+            surname=userDto.surname,
             password=userDto.password
         )
         userDao.addUser(user)

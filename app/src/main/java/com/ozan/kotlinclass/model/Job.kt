@@ -12,6 +12,6 @@ data class Job(
 
     val jobfield:String,
 
-    val joblvl: Joblvl
+    val joblvl: Joblvl?
 
 )

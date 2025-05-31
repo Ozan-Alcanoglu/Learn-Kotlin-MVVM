@@ -18,7 +18,9 @@ import androidx.navigation.compose.rememberNavController
 import com.ozan.kotlinclass.screens.FirstPage
 import com.ozan.kotlinclass.screens.SecondPage
 import com.ozan.kotlinclass.ui.theme.KotlinClassTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

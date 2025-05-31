@@ -6,5 +6,5 @@ data class JobDto(
 
     val jobfield:String,
 
-    val joblvl: Joblvl
+    val joblvl: Joblvl?
 )

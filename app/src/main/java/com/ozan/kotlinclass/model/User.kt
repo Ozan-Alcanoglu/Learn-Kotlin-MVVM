@@ -13,6 +13,8 @@ data class User(
 
     val username:String,
 
+    val surname:String,
+
     val password:String
 
 )
