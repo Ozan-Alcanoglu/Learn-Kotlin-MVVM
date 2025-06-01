@@ -22,7 +22,7 @@ object AppModule {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "app_database"
+            "kotlinfirst_db"
         )
             .fallbackToDestructiveMigration()
             .build()
